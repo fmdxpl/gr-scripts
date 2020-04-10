@@ -6,7 +6,7 @@
 #
 # GNU Radio Python Flow Graph
 # Title: FMDX-SDR
-# Author: Konrad Kosmatka, Stanislaw Grams
+# Author: Konrad Kosmatka
 # GNU Radio version: 3.8.0.0
 
 from gnuradio import analog
@@ -49,6 +49,7 @@ class fmdx_sdr(gr.top_block):
         self.red = red = 1
         self.pilot_var = pilot_var = 0
         self.pilot_taps = pilot_taps = [0.0009182306239381433, -0.00025654269848018885, -0.0013555705081671476, -0.001962132751941681, -0.0018382493872195482, -0.0010178526863455772, 0.00020125597075093538, 0.0013654007343575358, 0.002033853903412819, 0.0019456685986369848, 0.001121374312788248, -0.00014003500109538436, -0.0013694431399926543, -0.0021020700223743916, -0.002053168136626482, -0.0012285460252314806, 7.292648660950363e-05, 0.0013675241498276591, 0.002166450023651123, 0.002160380594432354, 0.0013391001848503947, -1.1134821948207737e-18, -0.001359489164315164, -0.00222667190246284, -0.00226693507283926, -0.0014527522725984454, -7.865211955504492e-05, 0.0013452036073431373, 0.0022824229672551155, 0.002372455084696412, 0.0015692014712840319, 0.0001629147882340476, -0.0013245539739727974, -0.002333402168005705, -0.0024765627458691597, -0.0016881315968930721, -0.0002526503521949053, 0.0012974482960999012, 0.0023793214932084084, 0.0025788790080696344, 0.0018092120299115777, 0.00034769895137287676, -0.001263816375285387, -0.0024199059698730707, -0.0026790250558406115, -0.001932099461555481, -0.0004478787013795227, 0.0012236111797392368, 0.002454895991832018, 0.0027766244020313025, 0.0020564382430166006, 0.000552986457478255, -0.0011768086114898324, -0.002484048716723919, -0.002871304051950574, -0.0021818627137690783, -0.0006627980037592351, 0.001123407855629921, 0.0025071382988244295, 0.002962695434689522, 0.002307996852323413, 0.0007770691299811006, -0.0010634318459779024, -0.002523957286030054, -0.0030504364985972643, -0.0024344578851014376, -0.0008955357479862869, 0.000996927497908473, 0.0025343175511807203, 0.003134173573926091, 0.002560855122283101, 0.001017915434204042, -0.0009239654755219817, -0.002538051689043641, -0.003213561372831464, -0.002686793217435479, -0.0011439077788963914, 0.0008446403662674129, 0.0025350130163133144, 0.003288266249001026, 0.0028118735644966364, 0.0012731956085190177, -0.0007590703899040818, -0.0025250769685953856, -0.0033579657319933176, -0.0029356940649449825, -0.0014054457424208522, 0.0006673974567092955, 0.002508141566067934, 0.003422351088374853, 0.0030578530859202147, 0.0015403105644509196, -0.0005697865271940827, -0.0024841276463121176, -0.003481128253042698, -0.0031779485289007425, -0.0016774289542809129, 0.0004664254083763808, 0.002452980726957321, 0.003534019226208329, 0.0032955820206552744, 0.0018164274515584111, -0.00035752408439293504, -0.002414669143036008, -0.0035807627718895674, -0.0034103572834283113, -0.00195692153647542, 0.0002433142944937572, 0.002369186608120799, 0.003621115582063794, 0.003521884558722377, 0.0020985177252441645, -0.00012404864537529647, -0.002316551050171256, -0.0036548543721437454, -0.0036297801416367292, -0.0022408131044358015, 6.611300189243871e-18, 0.0022568050771951675, 0.0036817756481468678, 0.003733669174835086, 0.0023833992891013622, 0.00012853949738200754, -0.0021900166757404804, -0.00370169710367918, -0.003833186812698841, -0.0025258618406951427, -0.000261259323451668, 0.002116277813911438, 0.003714458318427205, 0.003927977290004492, 0.002667783061042428, 0.00039783157990314066, -0.0020357053726911545, -0.0037199221551418304, -0.00401770044118166, -0.0028087422251701355, -0.0005379121284931898, 0.001948440563865006, 0.003717973828315735, 0.004102027975022793, 0.0029483186081051826, 0.0006811417988501489, -0.001854648464359343, -0.003708523465320468, -0.004180646501481533, -0.0030860919505357742, -0.0008271473925560713, 0.0017545174341648817, 0.0036915054079145193, 0.004253261256963015, 0.0032216450199484825, 0.000975543400272727, -0.001648259349167347, -0.003666879143565893, -0.0043195937760174274, -0.0033545633777976036, -0.0011259327875450253, 0.0015361076220870018, 0.0036346286069601774, 0.004379383288323879, 0.0034844393376260996, 0.0012779090320691466, -0.0014183175517246127, -0.0035947635769844055, -0.004432390909641981, -0.0036108712665736675, -0.001431056996807456, 0.0012951655080541968, 0.0035473189782351255, 0.004478397313505411, 0.0037334668450057507, 0.0015849546762183309, -0.001166946836747229, -0.003492355812340975, -0.004517205059528351, -0.0038518430665135384, -0.0017391747096553445, 0.0010339765576645732, 0.0034299599938094616, 0.004548639990389347, 0.003965628333389759, 0.0018932860111817718, -0.0008965870947577059, -0.003360242350026965, -0.004572550766170025, -0.004074465483427048, -0.0020468549337238073, 0.0007551274029538035, 0.003283339086920023, 0.004588809795677662, 0.004178009927272797, 0.0021994474809616804, -0.0006099619786255062, -0.0031994106248021126, -0.004597314167767763, -0.004275932442396879, -0.0023506300058215857, 0.0004614694626070559, 0.003108641365543008, 0.004597986117005348, 0.0043679228983819485, 0.002499972004443407, -0.00031004135962575674, -0.003011238994076848, -0.004590773489326239, -0.004453686065971851, -0.0026470464654266834, 0.00015608056855853647, 0.002907434245571494, 0.004575648810714483, 0.004532947670668364, 0.0027914319653064013, -5.5674106639111386e-18, -0.0027974797412753105, -0.0045526111498475075, -0.004605453927069902, -0.002932714531198144, -0.00015777887892909348, 0.0026816485915333033, 0.004521685652434826, 0.004670972004532814, 0.0030704885721206665, 0.00031682755798101425, -0.002560234861448407, -0.004482922609895468, -0.004729289561510086, -0.0032043587416410446, -0.0004767120990436524, 0.002433551475405693, 0.0044363983906805515, 0.0047802189365029335, 0.0033339415676891804, 0.0006369944312609732, -0.0023019290529191494, -0.004382215905934572, -0.004823595751076937, -0.003458866151049733, -0.0007972343591973186, 0.0021657152101397514, 0.004320500884205103, 0.004859279375523329, 0.0035787762608379126, 0.0009569909307174385, -0.00202527386136353, -0.004251406062394381, -0.004887153394520283, -0.003693331265822053, -0.0011158237466588616, 0.0018809823086485267, 0.0041751074604690075, 0.004907128866761923, 0.003802207065746188, 0.001273295027203858, -0.001733231358230114, -0.004091804381459951, -0.004919140134006739, -0.0039050988852977753, -0.001428971067070961, 0.0015824235742911696, 0.00400172034278512, 0.004923148546367884, 0.00400172034278512, 0.0015824235742911696, -0.001428971067070961, -0.0039050988852977753, -0.004919140134006739, -0.004091804381459951, -0.001733231358230114, 0.001273295027203858, 0.003802207065746188, 0.004907128866761923, 0.0041751074604690075, 0.0018809823086485267, -0.0011158237466588616, -0.003693331265822053, -0.004887153394520283, -0.004251406062394381, -0.00202527386136353, 0.0009569909307174385, 0.0035787762608379126, 0.004859279375523329, 0.004320500884205103, 0.0021657152101397514, -0.0007972343591973186, -0.003458866151049733, -0.004823595751076937, -0.004382215905934572, -0.0023019290529191494, 0.0006369944312609732, 0.0033339415676891804, 0.0047802189365029335, 0.0044363983906805515, 0.002433551475405693, -0.0004767120990436524, -0.0032043587416410446, -0.004729289561510086, -0.004482922609895468, -0.002560234861448407, 0.00031682755798101425, 0.0030704885721206665, 0.004670972004532814, 0.004521685652434826, 0.0026816485915333033, -0.00015777887892909348, -0.002932714531198144, -0.004605453927069902, -0.0045526111498475075, -0.0027974797412753105, -5.5674106639111386e-18, 0.0027914319653064013, 0.004532947670668364, 0.004575648810714483, 0.002907434245571494, 0.00015608056855853647, -0.0026470464654266834, -0.004453686065971851, -0.004590773489326239, -0.003011238994076848, -0.00031004135962575674, 0.002499972004443407, 0.0043679228983819485, 0.004597986117005348, 0.003108641365543008, 0.0004614694626070559, -0.0023506300058215857, -0.004275932442396879, -0.004597314167767763, -0.0031994106248021126, -0.0006099619786255062, 0.0021994474809616804, 0.004178009927272797, 0.004588809795677662, 0.003283339086920023, 0.0007551274029538035, -0.0020468549337238073, -0.004074465483427048, -0.004572550766170025, -0.003360242350026965, -0.0008965870947577059, 0.0018932860111817718, 0.003965628333389759, 0.004548639990389347, 0.0034299599938094616, 0.0010339765576645732, -0.0017391747096553445, -0.0038518430665135384, -0.004517205059528351, -0.003492355812340975, -0.001166946836747229, 0.0015849546762183309, 0.0037334668450057507, 0.004478397313505411, 0.0035473189782351255, 0.0012951655080541968, -0.001431056996807456, -0.0036108712665736675, -0.004432390909641981, -0.0035947635769844055, -0.0014183175517246127, 0.0012779090320691466, 0.0034844393376260996, 0.004379383288323879, 0.0036346286069601774, 0.0015361076220870018, -0.0011259327875450253, -0.0033545633777976036, -0.0043195937760174274, -0.003666879143565893, -0.001648259349167347, 0.000975543400272727, 0.0032216450199484825, 0.004253261256963015, 0.0036915054079145193, 0.0017545174341648817, -0.0008271473925560713, -0.0030860919505357742, -0.004180646501481533, -0.003708523465320468, -0.001854648464359343, 0.0006811417988501489, 0.0029483186081051826, 0.004102027975022793, 0.003717973828315735, 0.001948440563865006, -0.0005379121284931898, -0.0028087422251701355, -0.00401770044118166, -0.0037199221551418304, -0.0020357053726911545, 0.00039783157990314066, 0.002667783061042428, 0.003927977290004492, 0.003714458318427205, 0.002116277813911438, -0.000261259323451668, -0.0025258618406951427, -0.003833186812698841, -0.00370169710367918, -0.0021900166757404804, 0.00012853949738200754, 0.0023833992891013622, 0.003733669174835086, 0.0036817756481468678, 0.0022568050771951675, 6.611300189243871e-18, -0.0022408131044358015, -0.0036297801416367292, -0.0036548543721437454, -0.002316551050171256, -0.00012404864537529647, 0.0020985177252441645, 0.003521884558722377, 0.003621115582063794, 0.002369186608120799, 0.0002433142944937572, -0.00195692153647542, -0.0034103572834283113, -0.0035807627718895674, -0.002414669143036008, -0.00035752408439293504, 0.0018164274515584111, 0.0032955820206552744, 0.003534019226208329, 0.002452980726957321, 0.0004664254083763808, -0.0016774289542809129, -0.0031779485289007425, -0.003481128253042698, -0.0024841276463121176, -0.0005697865271940827, 0.0015403105644509196, 0.0030578530859202147, 0.003422351088374853, 0.002508141566067934, 0.0006673974567092955, -0.0014054457424208522, -0.0029356940649449825, -0.0033579657319933176, -0.0025250769685953856, -0.0007590703899040818, 0.0012731956085190177, 0.0028118735644966364, 0.003288266249001026, 0.0025350130163133144, 0.0008446403662674129, -0.0011439077788963914, -0.002686793217435479, -0.003213561372831464, -0.002538051689043641, -0.0009239654755219817, 0.001017915434204042, 0.002560855122283101, 0.003134173573926091, 0.0025343175511807203, 0.000996927497908473, -0.0008955357479862869, -0.0024344578851014376, -0.0030504364985972643, -0.002523957286030054, -0.0010634318459779024, 0.0007770691299811006, 0.002307996852323413, 0.002962695434689522, 0.0025071382988244295, 0.001123407855629921, -0.0006627980037592351, -0.0021818627137690783, -0.002871304051950574, -0.002484048716723919, -0.0011768086114898324, 0.000552986457478255, 0.0020564382430166006, 0.0027766244020313025, 0.002454895991832018, 0.0012236111797392368, -0.0004478787013795227, -0.001932099461555481, -0.0026790250558406115, -0.0024199059698730707, -0.001263816375285387, 0.00034769895137287676, 0.0018092120299115777, 0.0025788790080696344, 0.0023793214932084084, 0.0012974482960999012, -0.0002526503521949053, -0.0016881315968930721, -0.0024765627458691597, -0.002333402168005705, -0.0013245539739727974, 0.0001629147882340476, 0.0015692014712840319, 0.002372455084696412, 0.0022824229672551155, 0.0013452036073431373, -7.865211955504492e-05, -0.0014527522725984454, -0.00226693507283926, -0.00222667190246284, -0.001359489164315164, -1.1134821948207737e-18, 0.0013391001848503947, 0.002160380594432354, 0.002166450023651123, 0.0013675241498276591, 7.292648660950363e-05, -0.0012285460252314806, -0.002053168136626482, -0.0021020700223743916, -0.0013694431399926543, -0.00014003500109538436, 0.001121374312788248, 0.0019456685986369848, 0.002033853903412819, 0.0013654007343575358, 0.00020125597075093538, -0.0010178526863455772, -0.0018382493872195482, -0.001962132751941681, -0.0013555705081671476, -0.00025654269848018885, 0.0009182306239381433]
+        self.mpx_delay = mpx_delay = 0
         self.min_interp = min_interp = 1.3
         self.max_interp = max_interp = 2.2
         self.low = low = 6
@@ -130,16 +131,17 @@ class fmdx_sdr(gr.top_block):
         self.osmosdr_source_0 = osmosdr.source(
             args="numchan=" + str(1) + " " + 'rtl=0'
         )
-        self.osmosdr_source_0.set_sample_rate(2.048e6)
-        self.osmosdr_source_0.set_center_freq(freq*1000-freq_offset, 0)
-        self.osmosdr_source_0.set_freq_corr(0, 0)
+        self.osmosdr_source_0.set_time_unknown_pps(osmosdr.time_spec_t())
+        self.osmosdr_source_0.set_sample_rate(2048000)
+        self.osmosdr_source_0.set_center_freq(freq*1000.0 - freq_offset, 0)
+        self.osmosdr_source_0.set_freq_corr(30, 0)
         self.osmosdr_source_0.set_gain(38, 0)
         self.osmosdr_source_0.set_if_gain(0, 0)
         self.osmosdr_source_0.set_bb_gain(0, 0)
         self.osmosdr_source_0.set_antenna('', 0)
         self.osmosdr_source_0.set_bandwidth(0, 0)
         self.low_pass_filter_1_2_0 = filter.fir_filter_ccf(
-            4,
+            int(samp_rate / samp_rate_audio),
             firdes.low_pass(
                 1,
                 samp_rate,
@@ -148,7 +150,7 @@ class fmdx_sdr(gr.top_block):
                 firdes.WIN_BLACKMAN,
                 6.76))
         self.low_pass_filter_1_2 = filter.fir_filter_ccf(
-            4,
+            int(samp_rate / samp_rate_audio),
             firdes.low_pass(
                 2,
                 samp_rate,
@@ -221,18 +223,19 @@ class fmdx_sdr(gr.top_block):
         self.blocks_multiply_const_vxx_0_0_0 = blocks.multiply_const_ff(samp_rate / float(1000)  / 2)
         self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_ff(0.5)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(0.5)
-        self.blocks_moving_average_xx_2 = blocks.moving_average_ff(12800, 1.0/float(samp_rate/15.0), 4000, 1)
-        self.blocks_moving_average_xx_1_1 = blocks.moving_average_ff(384, 1/float(samp_rate/bw_rate), 4000, 1)
+        self.blocks_moving_average_xx_2 = blocks.moving_average_ff(int(samp_rate/15), 1/float(samp_rate/15), 4000, 1)
+        self.blocks_moving_average_xx_1_1 = blocks.moving_average_ff(int(samp_rate / bw_rate), 1 / float (samp_rate / bw_rate), 4000, 1)
         self.blocks_moving_average_xx_1_0 = blocks.moving_average_ff(avg, 1/float(avg), 4000, subbands)
         self.blocks_moving_average_xx_1 = blocks.moving_average_ff(avg, 1/float(avg), 4000, subbands)
-        self.blocks_moving_average_xx_0 = blocks.moving_average_ff(12800, 1/float(samp_rate/15), 4000, 1)
+        self.blocks_moving_average_xx_0 = blocks.moving_average_ff(int(samp_rate/15), 1/float(samp_rate/15), 4000, 1)
         self.blocks_keep_one_in_n_0_0 = blocks.keep_one_in_n(gr.sizeof_char*1, 2)
-        self.blocks_keep_one_in_n_0 = blocks.keep_one_in_n(gr.sizeof_float*1, 384)
+        self.blocks_keep_one_in_n_0 = blocks.keep_one_in_n(gr.sizeof_float*1, int(samp_rate/bw_rate))
         self.blocks_float_to_complex_1 = blocks.float_to_complex(subbands)
         self.blocks_float_to_complex_0 = blocks.float_to_complex(1)
         self.blocks_divide_xx_1 = blocks.divide_ff(subbands)
         self.blocks_delay_2 = blocks.delay(gr.sizeof_gr_complex*subbands, 2)
         self.blocks_delay_1 = blocks.delay(gr.sizeof_gr_complex*1, 51)
+        self.blocks_delay_0_0 = blocks.delay(gr.sizeof_gr_complex*1, mpx_delay)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_float*1, subbands*2)
         self.blocks_conjugate_cc_0 = blocks.conjugate_cc()
         self.blocks_complex_to_real_0_0_0 = blocks.complex_to_real(1)
@@ -240,7 +243,7 @@ class fmdx_sdr(gr.top_block):
         self.blocks_complex_to_mag_1 = blocks.complex_to_mag(subbands)
         self.blocks_complex_to_mag_0 = blocks.complex_to_mag(subbands)
         self.blocks_complex_to_float_4 = blocks.complex_to_float(1)
-        self.blocks_complex_to_float_3 = blocks.complex_to_float(1)
+        self.blocks_complex_to_float_2 = blocks.complex_to_float(1)
         self.blocks_complex_to_float_1 = blocks.complex_to_float(1)
         self.blocks_complex_to_float_0 = blocks.complex_to_float(1)
         self.blocks_add_xx_0 = blocks.add_vff(1)
@@ -266,7 +269,7 @@ class fmdx_sdr(gr.top_block):
         self.connect((self.blocks_complex_to_float_0, 0), (self.blocks_multiply_const_vxx_1, 0))
         self.connect((self.blocks_complex_to_float_1, 0), (self.blocks_stream_to_vector_0, 0))
         self.connect((self.blocks_complex_to_float_1, 1), (self.blocks_stream_to_vector_0_0, 0))
-        self.connect((self.blocks_complex_to_float_3, 0), (self.blocks_multiply_const_vxx_0_1, 0))
+        self.connect((self.blocks_complex_to_float_2, 0), (self.blocks_multiply_const_vxx_0_1, 0))
         self.connect((self.blocks_complex_to_float_4, 0), (self.blocks_multiply_const_vxx_0_0_0, 0))
         self.connect((self.blocks_complex_to_mag_0, 0), (self.blocks_moving_average_xx_1_0, 0))
         self.connect((self.blocks_complex_to_mag_1, 0), (self.blocks_moving_average_xx_1, 0))
@@ -275,15 +278,16 @@ class fmdx_sdr(gr.top_block):
         self.connect((self.blocks_conjugate_cc_0, 0), (self.blocks_multiply_xx_0, 1))
         self.connect((self.blocks_delay_0, 0), (self.blocks_add_xx_0, 1))
         self.connect((self.blocks_delay_0, 0), (self.blocks_sub_xx_0, 0))
+        self.connect((self.blocks_delay_0_0, 0), (self.blocks_multiply_xx_1, 0))
+        self.connect((self.blocks_delay_0_0, 0), (self.low_pass_filter_1_2_0, 0))
         self.connect((self.blocks_delay_1, 0), (self.blocks_multiply_xx_1_0, 0))
         self.connect((self.blocks_delay_1, 0), (self.blocks_multiply_xx_1_0, 1))
         self.connect((self.blocks_delay_2, 0), (self.blocks_multiply_xx_4, 0))
         self.connect((self.blocks_divide_xx_1, 0), (self.epy_block_interp, 0))
-        self.connect((self.blocks_float_to_complex_0, 0), (self.blocks_multiply_xx_1, 0))
+        self.connect((self.blocks_float_to_complex_0, 0), (self.blocks_delay_0_0, 0))
         self.connect((self.blocks_float_to_complex_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))
         self.connect((self.blocks_float_to_complex_0, 0), (self.freq_xlating_fir_filter_xxx_1_0_0, 0))
         self.connect((self.blocks_float_to_complex_0, 0), (self.high_pass_filter_0_0_1, 0))
-        self.connect((self.blocks_float_to_complex_0, 0), (self.low_pass_filter_1_2_0, 0))
         self.connect((self.blocks_float_to_complex_1, 0), (self.blocks_multiply_xx_4, 1))
         self.connect((self.blocks_keep_one_in_n_0, 0), (self.blocks_transcendental_0, 0))
         self.connect((self.blocks_keep_one_in_n_0_0, 0), (self.digital_diff_decoder_bb_0, 0))
@@ -295,8 +299,8 @@ class fmdx_sdr(gr.top_block):
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.analog_fm_deemph_0_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.analog_fm_deemph_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0_0_0, 0), (self.blocks_abs_xx_0_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0_1, 0), (self.blocks_multiply_xx_1_1, 1))
         self.connect((self.blocks_multiply_const_vxx_0_1, 0), (self.blocks_multiply_xx_1_1, 0))
+        self.connect((self.blocks_multiply_const_vxx_0_1, 0), (self.blocks_multiply_xx_1_1, 1))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.blocks_add_xx_0, 0))
         self.connect((self.blocks_multiply_const_vxx_1, 0), (self.blocks_sub_xx_0, 1))
         self.connect((self.blocks_multiply_xx_0, 0), (self.blocks_complex_to_real_0, 0))
@@ -313,8 +317,8 @@ class fmdx_sdr(gr.top_block):
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.rds_decoder_0, 0))
         self.connect((self.digital_psk_demod_0, 0), (self.blocks_keep_one_in_n_0_0, 0))
         self.connect((self.epy_block_0, 0), (self.blocks_probe_signal_x_0, 0))
-        self.connect((self.epy_block_interp, 0), (self.blocks_float_to_complex_1, 0))
         self.connect((self.epy_block_interp, 0), (self.blocks_float_to_complex_1, 1))
+        self.connect((self.epy_block_interp, 0), (self.blocks_float_to_complex_1, 0))
         self.connect((self.fft_vxx_1, 0), (self.blocks_complex_to_mag_1, 0))
         self.connect((self.fft_vxx_1, 0), (self.blocks_delay_2, 0))
         self.connect((self.fft_vxx_1_0, 0), (self.blocks_complex_to_mag_0, 0))
@@ -328,7 +332,7 @@ class fmdx_sdr(gr.top_block):
         self.connect((self.freq_xlating_fir_filter_xxx_1_0_0, 0), (self.pfb_arb_resampler_xxx_0, 0))
         self.connect((self.high_pass_filter_0_0, 0), (self.blocks_complex_to_real_0_0_0, 0))
         self.connect((self.high_pass_filter_0_0_0, 0), (self.blocks_complex_to_float_1, 0))
-        self.connect((self.high_pass_filter_0_0_1, 0), (self.blocks_complex_to_float_3, 0))
+        self.connect((self.high_pass_filter_0_0_1, 0), (self.blocks_complex_to_float_2, 0))
         self.connect((self.low_pass_filter_1_2, 0), (self.high_pass_filter_0_0_0, 0))
         self.connect((self.low_pass_filter_1_2_0, 0), (self.high_pass_filter_0_0, 0))
         self.connect((self.osmosdr_source_0, 0), (self.rational_resampler_xxx_0, 0))
@@ -367,9 +371,10 @@ class fmdx_sdr(gr.top_block):
         self.analog_pll_refout_cc_0.set_max_freq(2 * math.pi * (19005) / self.samp_rate)
         self.analog_pll_refout_cc_0.set_min_freq(2 * math.pi * (18995) / self.samp_rate)
         self.analog_quadrature_demod_cf_0.set_gain(self.samp_rate / (2 * math.pi * (self.samp_rate * 0.5)))
-        self.blocks_moving_average_xx_0.set_length_and_scale(12800, 1/float(self.samp_rate/15))
-        self.blocks_moving_average_xx_1_1.set_length_and_scale(384, 1/float(self.samp_rate/self.bw_rate))
-        self.blocks_moving_average_xx_2.set_length_and_scale(12800, 1.0/float(self.samp_rate/15.0))
+        self.blocks_keep_one_in_n_0.set_n(int(self.samp_rate/self.bw_rate))
+        self.blocks_moving_average_xx_0.set_length_and_scale(int(self.samp_rate/15), 1/float(self.samp_rate/15))
+        self.blocks_moving_average_xx_1_1.set_length_and_scale(int(self.samp_rate / self.bw_rate), 1 / float (self.samp_rate / self.bw_rate))
+        self.blocks_moving_average_xx_2.set_length_and_scale(int(self.samp_rate/15), 1/float(self.samp_rate/15))
         self.blocks_multiply_const_vxx_0_0_0.set_k(self.samp_rate / float(1000)  / 2)
         self.blocks_multiply_const_vxx_0_1.set_k(self.samp_rate / float(1000))
         self.high_pass_filter_0_0_1.set_taps(firdes.high_pass(1, self.samp_rate, 70e3, 10e3, firdes.WIN_BLACKMAN, 6.76))
@@ -409,6 +414,13 @@ class fmdx_sdr(gr.top_block):
         self.pilot_taps = pilot_taps
         self.freq_xlating_fir_filter_xxx_0.set_taps(self.pilot_taps)
 
+    def get_mpx_delay(self):
+        return self.mpx_delay
+
+    def set_mpx_delay(self, mpx_delay):
+        self.mpx_delay = mpx_delay
+        self.blocks_delay_0_0.set_dly(self.mpx_delay)
+
     def get_min_interp(self):
         return self.min_interp
 
@@ -443,14 +455,14 @@ class fmdx_sdr(gr.top_block):
     def set_freq_offset(self, freq_offset):
         self.freq_offset = freq_offset
         self.freq_xlating_fir_filter_xxx_1.set_center_freq(self.freq_offset)
-        self.osmosdr_source_0.set_center_freq(self.freq*1000-self.freq_offset, 0)
+        self.osmosdr_source_0.set_center_freq(self.freq*1000.0 - self.freq_offset, 0)
 
     def get_freq(self):
         return self.freq
 
     def set_freq(self, freq):
         self.freq = freq
-        self.osmosdr_source_0.set_center_freq(self.freq*1000-self.freq_offset, 0)
+        self.osmosdr_source_0.set_center_freq(self.freq*1000.0 - self.freq_offset, 0)
 
     def get_firs(self):
         return self.firs
@@ -477,7 +489,8 @@ class fmdx_sdr(gr.top_block):
 
     def set_bw_rate(self, bw_rate):
         self.bw_rate = bw_rate
-        self.blocks_moving_average_xx_1_1.set_length_and_scale(384, 1/float(self.samp_rate/self.bw_rate))
+        self.blocks_keep_one_in_n_0.set_n(int(self.samp_rate/self.bw_rate))
+        self.blocks_moving_average_xx_1_1.set_length_and_scale(int(self.samp_rate / self.bw_rate), 1 / float (self.samp_rate / self.bw_rate))
 
     def get_bw(self):
         return self.bw
@@ -514,7 +527,7 @@ def main(top_block_cls=fmdx_sdr, options=None):
     signal.signal(signal.SIGINT, sig_handler)
     signal.signal(signal.SIGTERM, sig_handler)
 
-    tb.start()
+    tb.start(1)
     tb.wait()
 
 
