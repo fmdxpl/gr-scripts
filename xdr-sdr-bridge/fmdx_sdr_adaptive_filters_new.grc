@@ -575,7 +575,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '107400'
+    value: '87500'
   states:
     bus_sink: false
     bus_source: false
@@ -1771,7 +1771,7 @@ blocks:
     comment: ''
     constellation_points: '2'
     differential: 'False'
-    excess_bw: '0.35'
+    excess_bw: '1'
     freq_bw: 6.28/100.0
     log: 'False'
     maxoutbuf: '0'
@@ -1999,7 +1999,7 @@ blocks:
     coordinate: [464, 352.0]
     rotation: 0
     state: enabled
-- name: freq_xlating_fir_filter_xxx_1_0_0
+- name: freq_xlating_fir_filter_xxx_1_0_0_0
   id: freq_xlating_fir_filter_xxx
   parameters:
     affinity: ''
@@ -2010,13 +2010,13 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
-    taps: firdes.low_pass(2500.0,250000,2.6e3,2e3,firdes.WIN_HAMMING)
+    taps: firdes.low_pass(2500.0,250000,1.5e3,2e3,firdes.WIN_BLACKMAN_HARRIS)
     type: ccc
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [352, 2228]
+    coordinate: [360, 2164.0]
     rotation: 0
     state: enabled
 - name: high_pass_filter_0_0
@@ -2098,7 +2098,7 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: 15e3
+    cutoff_freq: 18e3
     decim: int(samp_rate / samp_rate_audio)
     gain: '2'
     interp: '1'
@@ -2107,7 +2107,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_ccf
     width: 1e3
-    win: firdes.WIN_BLACKMAN
+    win: firdes.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
@@ -2122,7 +2122,7 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: 15e3
+    cutoff_freq: 18e3
     decim: int(samp_rate / samp_rate_audio)
     gain: '1'
     interp: '1'
@@ -2131,7 +2131,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_ccf
     width: 1e3
-    win: firdes.WIN_BLACKMAN
+    win: firdes.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
@@ -2250,7 +2250,7 @@ blocks:
     clock_source6: ''
     clock_source7: ''
     comment: ''
-    corr0: '30'
+    corr0: '24'
     corr1: '0'
     corr10: '0'
     corr11: '0'
@@ -2346,7 +2346,7 @@ blocks:
     freq7: 100e6
     freq8: 100e6
     freq9: 100e6
-    gain0: '38'
+    gain0: '37'
     gain1: '10'
     gain10: '10'
     gain11: '10'
@@ -2501,11 +2501,11 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    atten: '100'
+    atten: '0'
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    nfilts: '32'
+    nfilts: '2048'
     rrate: 19000/float(samp_rate)
     samp_delay: '0'
     taps: ''
@@ -2514,7 +2514,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [592, 2228]
+    coordinate: [600, 2252.0]
     rotation: 0
     state: enabled
 - name: pilot_prob
@@ -2558,7 +2558,7 @@ blocks:
     alias: ''
     comment: ''
     debug: 'False'
-    log: 'False'
+    log: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
   states:
@@ -2569,6 +2569,29 @@ blocks:
     rotation: 0
     state: enabled
 - name: root_raised_cosine_filter_0
+  id: root_raised_cosine_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha: '1'
+    comment: ''
+    decim: '2'
+    gain: '10'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ntaps: '100'
+    samp_rate: '19000'
+    sym_rate: '2375'
+    type: fir_filter_ccf
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [896, 2180.0]
+    rotation: 0
+    state: enabled
+- name: root_raised_cosine_filter_0_0
   id: root_raised_cosine_filter
   parameters:
     affinity: ''
@@ -2588,9 +2611,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [856, 2212]
+    coordinate: [1328, 2124.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: rssi_prob
   id: blocks_probe_signal_x
   parameters:
@@ -2823,7 +2846,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1096, 2252]
+    coordinate: [1160, 2244.0]
     rotation: 0
     state: enabled
 - name: virtual_source_0
@@ -3114,7 +3137,7 @@ connections:
 - [freq_xlating_fir_filter_xxx_0, '0', analog_pll_refout_cc_0, '0']
 - [freq_xlating_fir_filter_xxx_0, '0', blocks_complex_to_float_4, '0']
 - [freq_xlating_fir_filter_xxx_1, '0', fir_filter_xxx_0, '0']
-- [freq_xlating_fir_filter_xxx_1_0_0, '0', pfb_arb_resampler_xxx_0, '0']
+- [freq_xlating_fir_filter_xxx_1_0_0_0, '0', pfb_arb_resampler_xxx_0, '0']
 - [high_pass_filter_0_0, '0', blocks_complex_to_real_0_0_0, '0']
 - [high_pass_filter_0_0_0, '0', blocks_complex_to_float_1, '0']
 - [high_pass_filter_0_0_1, '0', blocks_complex_to_float_2, '0']
@@ -3144,7 +3167,7 @@ connections:
 - [virtual_source_0_0_1_1_2_1_0, '0', blocks_delay_2, '0']
 - [virtual_source_0_0_1_1_2_1_1, '0', blocks_moving_average_xx_1, '0']
 - [virtual_source_1, '0', high_pass_filter_0_0_1, '0']
-- [virtual_source_11, '0', freq_xlating_fir_filter_xxx_1_0_0, '0']
+- [virtual_source_11, '0', freq_xlating_fir_filter_xxx_1_0_0_0, '0']
 - [virtual_source_12, '0', digital_psk_demod_0, '0']
 
 metadata:
