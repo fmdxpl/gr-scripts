@@ -28,8 +28,9 @@ class XDRHandler(socketserver.StreamRequestHandler):
             return False
         elif(data[0] == "T"):
             self.server.set_tuner_freq(int(data[1:]))
-            os.system("killall -9 run-redsea.sh")
-            os.system("kill -9 `pidof nc`")
+            os.system("pgrep -f \"nc -l -u 12345\" | xargs kill -9")
+            os.system("pgrep -f \"nc -u 127.0.0.1 52005\" | xargs kill -9")
+            #os.system("kill -9 `pidof nc`")
         elif(data[0] == "B"):
             self.server.set_tuner_forced_mono(int(data[1:]))
         elif(data[0] == "D"):

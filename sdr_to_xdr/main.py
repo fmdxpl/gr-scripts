@@ -30,7 +30,7 @@ def redsea (srv):
     #os.system ("nc -l -u 12345 | redsea -x -p | nc -u 127.0.0.1 52005")
     while True:
         #os.system ("nc -l -u 12345 | redsea -x -p | nc -u 127.0.0.1 52005")
-        os.system ("/home/sjg/git/gr-scripts/xdr-sdr-bridge/run-redsea.sh")
+        os.system ("/home/sjg/git/gr-scripts/sdr_to_xdr/run-redsea.sh")
         print ("buf reconn")
 
 def rds(srv):
